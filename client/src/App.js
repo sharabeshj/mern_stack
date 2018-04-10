@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import FormContainer from './containers/FormContainer';
+import Header from './containers/Header';
 
 class App extends Component {
   state = {
@@ -23,7 +24,10 @@ class App extends Component {
 
   render() {
     return (
-      <FormContainer/>
+      <div>
+        <Header/>
+        <FormContainer/>
+      </div>  
     );
   }
 }

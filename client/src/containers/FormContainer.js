@@ -1,7 +1,8 @@
 import React,{ Component } from 'react';
-import CheckboxOrRadioGroup from '../components/CheckboxOrRadioGroup.js';
-import SingleInput from '../components/SingleInput.js';
-import TextArea from '../components/TextArea.js';
+import SubForm1 from './SubForm1'
+import SubForm2 from './SubForm2'
+import { Switch, Route } from 'react-router-dom'
+
 // import Select from '../components/Select';
 
 
@@ -76,10 +77,12 @@ export default class FormContainer extends Component {
 		const newSelection = e.target.value;
 		let newSelectionArray;
 
-		if(this.state.ethinicity.indexOf(newSelection) > -1) {
+		if(this.state.selectedEthinicity.indexOf(newSelection) > -1) {
 			newSelectionArray = this.state.selectedEthinicity.filter(s => s !== newSelection)
+			//console.log("hii");
 		}else {
 			newSelectionArray = [...this.state.selectedEthinicity,newSelection];
+			//console.log("hello");
 		}
 		this.setState({selectedEthinicity : newSelectionArray});
 	}
@@ -87,7 +90,7 @@ export default class FormContainer extends Component {
 		const newSelection = e.target.value;
 		let newSelectionArray;
 
-		if(this.state.race.indexOf(newSelection) > -1) {
+		if(this.state.selectedRace.indexOf(newSelection) > -1) {
 			newSelectionArray = this.state.selectedRace.filter(s => s !== newSelection)
 		}else {
 			newSelectionArray = [...this.state.selectedRace,newSelection];
@@ -98,7 +101,7 @@ export default class FormContainer extends Component {
 		const newSelection = e.target.value;
 		let newSelectionArray;
 
-		if(this.state.sex.indexOf(newSelection) > -1) {
+		if(this.state.selectedSex.indexOf(newSelection) > -1) {
 			newSelectionArray = this.state.selectedSex.filter(s => s !== newSelection)
 		}else {
 			newSelectionArray = [...this.state.selectedSex,newSelection];
@@ -123,71 +126,15 @@ export default class FormContainer extends Component {
 	render(){
 		return(
 			<form onSubmit = { this.handleFormSubmit }>
-				<SingleInput
-				inputType = {'text'}
-				title = {'Your Name'}
-				name = {'name'}
-				controlFunc = {this.handleFullNameChange}
-				content = {this.state.name}
-				placeholder = {'type first and last name here'}/>
-				<TextArea
-				title = {'Write a short description about yourself'}
-				rows = {20}
-				resize = {false}
-				content = {this.state.about}
-				name = {'about'}
-				controlFunc = {this.handleAboutChange}/>
-				<SingleInput
-				inputType = {'text'}
-				title = {'State'}
-				name = {'name'}
-				controlFunc = {this.handleStateChange}
-				content = {this.state.state}
-				placeholder = {'type your state'}/>
-				<SingleInput
-				inputType = {'number'}
-				title = {'Age'}
-				name = {'age'}
-				controlFunc = {this.handleAgeChange}
-				content = {this.state.age}
-				placeholder = {'type your age'}/>
-				<CheckboxOrRadioGroup 
-				title = {'Ethinicity'}
-				setName = {'ethinicity'}
-				type = {'radio'}
-				controlFunc = {this.handleEthinicitySelection}
-				options = {this.state.ethinicity}
-				selectedOptions = {this.state.selectedEthinicity}/>
-				<CheckboxOrRadioGroup
-				title = {'Race'}
-				setName = {'race'}
-				type = {'radio'}
-				controlFunc = {this.handleRaceSelection}
-				options = {this.state.race}
-				selectedOptions = {this.state.selectedRace}/>
-				<CheckboxOrRadioGroup
-				title = {'Sex'}
-				setName = {'sex'}
-				type = {'radio'}
-				controlFunc ={this.handleSexSelection}
-				options = {this.state.sex}
-				selectedOptions = {this.state.selectedSex}/>
-				<SingleInput
-				inputType = {'number'}
-				title = {'Height'}
-				name = {'height'}
-				controlFunc = {this.handleHeightChange}
-				content = {this.state.height}
-				placeholder = {'type your height'}/>
-				<SingleInput
-				inputType = {'number'}
-				title = {'Weight'}
-				name = {'weight'}
-				controlFunc = {this.handleWeightChange}
-				content = {this.state.weight}
-				placeholder = {'type your weight'}/>
-				<input type = "submit" value = "submit" />
-				<button onClick = {this.handleClearForm} >Clear form</button>
+				<Switch>
+					<Route exact path = '/' component = {() => (<SubForm1 name = {this.state.name} controlFunc1 = {this.handleFullNameChange} controlFunc2 = {this.handleAboutChange} about = {this.state.about}/>)}/>
+					<Route path = '/next' component = {() => (<SubForm2 controlFunc1 = {this.handleStateChange} state = {this.state.state} controlFunc2 = {this.handleAgeChange} age = {this.state.age} controlFunc3 = {this.handleEthinicitySelection} ethinicity = {this.state.ethinicity} selectedEthinicity = {this.state.selectedEthinicity} 
+						controlFunc4 = {this.handleRaceSelection} race = {this.state.race} selectedRace = {this.state.selectedRace}
+						controlFunc5 = {this.handleSexSelection} sex = {this.state.sex} selectedSex = {this.state.selectedSex}
+						controlFunc6 = {this.handleHeightChange} height = {this.state.height} controlFunc7 = {this.state.handleWeightChange} weight = {this.state.weight}
+						controlFunc8 = {this.handleClearForm}/>)}/> 
+				</Switch>
+				
 			</form>
 			);
 	}
