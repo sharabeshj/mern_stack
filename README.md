@@ -21,12 +21,10 @@ mongo-db
 
 A step by step series of examples that tell you have to get a development env running
 
-Say what the step will be
 
 ```
-npm install create-react-app
-npm install mongoose
-
+run npm install 
+and start app with yarn dev
 ```
 
 
@@ -57,10 +55,10 @@ Give an example
 
 Deploy using docker
 
-## Built With django and react
+## Built With MERN technologies
 
 
-## Contributing
+<!-- ## Contributing
 
 
 ## Versioning
@@ -78,3 +76,4 @@ Deploy using docker
 
 
 
+ -->
