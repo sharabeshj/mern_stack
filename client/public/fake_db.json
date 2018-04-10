@@ -1,0 +1,11 @@
+{
+	"name" : "",
+	"about" : "",
+	"state" :  "",
+	"age" : 0,
+	"ethinicity" : ["Hispanic","Non-Hispanic"],
+	"race" : ["American  indian","Asian","Native Hawaiian","Black","White"],
+	"sex" : ["Male","Female"],
+	"height" : 0,
+	"weight" : 0
+}
