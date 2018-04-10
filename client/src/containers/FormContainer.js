@@ -9,7 +9,7 @@ export default class FormContainer extends Component {
 	constructor(props) {
 		super(props);
 		this.handleFormSubmit = this.handleFormSubmit.bind(this);
-		this.handleClearForm = this.handleCllearForm.bind(this);	
+		this.handleClearForm = this.handleClearForm.bind(this);	
 		this.handleFullNameChange = this.handleFullNameChange.bind(this);
 		this.handleEthinicitySelection =this.handleEthinicitySelection.bind(this);
 		this.handleRaceSelection = this.handleRaceSelection.bind(this);
@@ -20,24 +20,22 @@ export default class FormContainer extends Component {
 		this.handleAboutChange = this.handleAboutChange.bind(this);
 		this.handleStateChange = this.handleStateChange.bind(this);
 		this.handleAgeChange = this.handleAgeChange.bind(this);
+		this.state = {
+					name : '',
+					about :  '',
+					state : '',
+					age : 0,
+					ethinicity : ["Hispanic","Non-Hispanic"],
+					selectedEthinicity : [],
+					race : ["American indian","Asian","Native Hawaiian","Black","White"],
+					selectedRace : [],
+					sex : ["Male","Female"],
+					selectedSex : [],
+					height : 0,
+					weight : 0,
+		}
 	}
-	componentDidMount(){
-		fetch('./fake_db.json')
-			.then(res => res.json())
-			.then(data => {
-				this.setState({
-					name : data.name,
-					about :  data.about,
-					state : data.state,
-					age : data.age,
-					ethinicity : data.ethinicity,
-					race : data.race,
-					sex : data.sex,
-					height : data.height,
-					weight : data.weight,
-				});
-			});
-	}
+
 	handleFormSubmit(e){
 		e.preventDefault();
 
@@ -64,14 +62,14 @@ export default class FormContainer extends Component {
 			about : '',
 			state : '',
 			age : 0,
-			ethinicity : '',
-			race : '',
-			sex : '',
+			selectedEthinicity : [],
+			selectedRace : [],
+			selectedSex : [],
 			height : 0,
 			weight : 0,
 		});
 	}
-	handleFullNameChansge(e){
+	handleFullNameChange(e){
 		this.setState({ name : e.target.value });
 	}
 	handleEthinicitySelection(e){
@@ -79,9 +77,9 @@ export default class FormContainer extends Component {
 		let newSelectionArray;
 
 		if(this.state.ethinicity.indexOf(newSelection) > -1) {
-			newSelectionArray = this.state.ethinicity.filter(s => s !== newSelection)
+			newSelectionArray = this.state.selectedEthinicity.filter(s => s !== newSelection)
 		}else {
-			newSelectionArray = [...this.state.ethinicity,newSelection];
+			newSelectionArray = [...this.state.selectedEthinicity,newSelection];
 		}
 		this.setState({selectedEthinicity : newSelectionArray});
 	}
@@ -90,9 +88,9 @@ export default class FormContainer extends Component {
 		let newSelectionArray;
 
 		if(this.state.race.indexOf(newSelection) > -1) {
-			newSelectionArray = this.state.race.filter(s => s !== newSelection)
+			newSelectionArray = this.state.selectedRace.filter(s => s !== newSelection)
 		}else {
-			newSelectionArray = [...this.state.race,newSelection];
+			newSelectionArray = [...this.state.selectedRace,newSelection];
 		}
 		this.setState({selectedRace : newSelectionArray});
 	}
@@ -101,11 +99,14 @@ export default class FormContainer extends Component {
 		let newSelectionArray;
 
 		if(this.state.sex.indexOf(newSelection) > -1) {
-			newSelectionArray = this.state.sex.filter(s => s !== newSelection)
+			newSelectionArray = this.state.selectedSex.filter(s => s !== newSelection)
 		}else {
-			newSelectionArray = [...this.state.sex,newSelection];
+			newSelectionArray = [...this.state.selectedSex,newSelection];
 		}
-		this.setState({selectedSex : newSelectionArray});
+		this.setState({selectedSex: newSelectionArray});
+	}
+	handleAboutChange(e) {
+		this.setState({ about : e.target.value });
 	}
 	handleStateChange(e){
 		this.setState({state : e.target.value });
@@ -126,7 +127,7 @@ export default class FormContainer extends Component {
 				inputType = {'text'}
 				title = {'Your Name'}
 				name = {'name'}
-				controlFunc = {this.handleFullNameChansge}
+				controlFunc = {this.handleFullNameChange}
 				content = {this.state.name}
 				placeholder = {'type first and last name here'}/>
 				<TextArea

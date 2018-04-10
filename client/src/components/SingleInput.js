@@ -1,17 +1,18 @@
 import React,{ Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class SingleInput extends Component {
 	constructor(props){
 		super(props);
 	}
 	static propTypes = {
-		inputType : React.PropTypes.oneof(['text','number']).isRequired,
-		title : React.PropTypes.string.isRequired,
-		name : React.PropTypes.string.isRequired,
-		controlFunc : React.PropTypes.func.isRequired,
-		content : React.PropTypes.oneOfType([
-			React.PropTypes.string,
-			React.PropTypes.number,
+		inputType : PropTypes.oneOf(['text','number']).isRequired,
+		title : PropTypes.string.isRequired,
+		name : PropTypes.string.isRequired,
+		controlFunc : PropTypes.func.isRequired,
+		content : PropTypes.oneOfType([
+			PropTypes.string,
+			PropTypes.number,
 			]).isRequired,
 	};
 	render() {
