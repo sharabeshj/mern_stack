@@ -127,11 +127,11 @@ export default class FormContainer extends Component {
 		return(
 			<form onSubmit = { this.handleFormSubmit }>
 				<Switch>
-					<Route exact path = '/' component = {() => (<SubForm1 name = {this.state.name} controlFunc1 = {this.handleFullNameChange} controlFunc2 = {this.handleAboutChange} about = {this.state.about}/>)}/>
-					<Route path = '/next' component = {() => (<SubForm2 controlFunc1 = {this.handleStateChange} state = {this.state.state} controlFunc2 = {this.handleAgeChange} age = {this.state.age} controlFunc3 = {this.handleEthinicitySelection} ethinicity = {this.state.ethinicity} selectedEthinicity = {this.state.selectedEthinicity} 
+					<Route exact path = '/' render = {() => (<SubForm1 name = {this.state.name} controlFunc1 = {this.handleFullNameChange} controlFunc2 = {this.handleAboutChange} about = {this.state.about}/>)}/>
+					<Route path = '/next' render = {() => (<SubForm2 controlFunc1 = {this.handleStateChange} state = {this.state.state} controlFunc2 = {this.handleAgeChange} age = {this.state.age} controlFunc3 = {this.handleEthinicitySelection} ethinicity = {this.state.ethinicity} selectedEthinicity = {this.state.selectedEthinicity} 
 						controlFunc4 = {this.handleRaceSelection} race = {this.state.race} selectedRace = {this.state.selectedRace}
 						controlFunc5 = {this.handleSexSelection} sex = {this.state.sex} selectedSex = {this.state.selectedSex}
-						controlFunc6 = {this.handleHeightChange} height = {this.state.height} controlFunc7 = {this.state.handleWeightChange} weight = {this.state.weight}
+						controlFunc6 = {this.handleHeightChange} height = {this.state.height} controlFunc7 = {this.handleWeightChange} weight = {this.state.weight}
 						controlFunc8 = {this.handleClearForm}/>)}/> 
 				</Switch>
 				
