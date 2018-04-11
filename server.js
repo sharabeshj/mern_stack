@@ -139,9 +139,9 @@ router.route('/register/:register_id')
 			res.json({ messsage : "Successfully deleted" });
 		});
 	});
-app.post('/api/register/upload',upload.single('file'),(req,res) => {
-	// res.json({file : req.file});
-	res.redirect('/');
+app.post('/upload',upload.single('file'),(req,res) => {
+	res.json({file : req.file});
+	// res.redirect('/');
 });
 
 app.get('/image/:filename',(req,res) => {
