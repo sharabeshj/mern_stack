@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import FormContainer from './containers/FormContainer';
-import Header from './containers/Header';
+import { Row,Col } from 'react-materialize'
 
 class App extends Component {
   state = {
@@ -24,10 +24,11 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <Header/>
+      <Row>
+      <Col s={12}>
         <FormContainer/>
-      </div>  
+      </Col>
+      </Row> 
     );
   }
 }

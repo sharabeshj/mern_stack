@@ -1,9 +1,10 @@
 import React,{ Component } from 'react';
-import SubForm1 from './SubForm1'
-import SubForm2 from './SubForm2'
-import { Switch, Route } from 'react-router-dom'
+import SingleInput from '../components/SingleInput'
+import CheckboxOrRadioGroup from '../components/CheckboxOrRadioGroup'
+import TextArea from '../components/TextArea'
 import axios from 'axios'
 import ImageUpload from '../components/ImageUpload'
+import { Tab,Tabs,Button } from 'react-materialize'
 
 // import Select from '../components/Select';
 
@@ -153,23 +154,85 @@ export default class FormContainer extends Component {
 	}
 	handleChange(e) {
 		e.preventDefault();
-		this.setState({file : e.target.files[0]});		
+		this.setState({file : e.target.files[0]});	
+		this.handleSubmit(e);	
 	}
 	render(){
 		return(
-			<div>
 			<form onSubmit = { this.handleFormSubmit }>
-				<Switch>
-					<Route exact path = '/' render = {() => (<SubForm1 fileName = {this.state.fileName} imgControlFunc1 = {this.handleChange} imgControlFunc2 = {this.handleSubmit} name = {this.state.name} controlFunc1 = {this.handleFullNameChange} controlFunc2 = {this.handleAboutChange} about = {this.state.about}/>)}/>
-					<Route path = '/next' render = {() => (<SubForm2 controlFunc1 = {this.handleStateChange} state = {this.state.state} controlFunc2 = {this.handleAgeChange} age = {this.state.age} controlFunc3 = {this.handleEthinicitySelection} ethinicity = {this.state.ethinicity} selectedEthinicity = {this.state.selectedEthinicity} 
-						controlFunc4 = {this.handleRaceSelection} race = {this.state.race} selectedRace = {this.state.selectedRace}
-						controlFunc5 = {this.handleSexSelection} sex = {this.state.sex} selectedSex = {this.state.selectedSex}
-						controlFunc6 = {this.handleHeightChange} height = {this.state.height} controlFunc7 = {this.handleWeightChange} weight = {this.state.weight}
-						controlFunc8 = {this.handleClearForm}/>)}/> 
-				</Switch>
-				
+			<Tabs className = "tab-demo z-depth-1 ">
+							<Tab title = "Introduction" tabWidth = {6} active>
+								<ImageUpload handleChange = {this.handleChange} state = {this.state.fileName}/>
+								<SingleInput
+								inputType = {'text'}
+								title = {'Your Name'}
+								name = {'name'}
+								controlFunc = {this.handleFullNameChange}
+								content = {this.state.name}
+								placeholder = {'type first and last name here'}/>
+								 <TextArea
+								title = {'Write a short description about yourself'}
+								rows = {20}
+								resize = {false}
+								content = {this.state.about}
+								name = {'about'}
+								controlFunc = {this.handleAboutChange}/>
+							</Tab>
+							<Tab title = "Personal Information" tabWidth = {6}>
+								<SingleInput
+								inputType = {'text'}
+								title = {'State'}
+								name = {'name'}
+								controlFunc = {this.handleStateChange}
+								content = {this.state.state}
+								placeholder = {'type your state'}/>
+								<SingleInput
+								inputType = {'number'}
+								title = {'Age'}
+								name = {'age'}
+								controlFunc = {this.handleAgeChange}
+								content = {this.state.age}
+								placeholder = {'type your age'}/>
+								<CheckboxOrRadioGroup 
+								title = {'Ethinicity'}
+								setName = {'ethinicity'}
+								type = {'radio'}
+								controlFunc = {this.handleEthinicitySelection}
+								options = {this.state.ethinicity}
+								selectedOptions = {this.state.selectedEthinicity}/>
+								<CheckboxOrRadioGroup
+								title = {'Race'}
+								setName = {'race'}
+								type = {'radio'}
+								controlFunc = {this.handleRaceSelection}
+								options = {this.state.race}
+								selectedOptions = {this.state.selectedRace}/>
+								<CheckboxOrRadioGroup
+								title = {'Sex'}
+								setName = {'sex'}
+								type = {'radio'}
+								controlFunc ={this.handleSexSelection}
+								options = {this.state.sex}
+								selectedOptions = {this.state.selectedSex}/>
+								<SingleInput
+								inputType = {'number'}
+								title = {'Height'}
+								name = {'height'}
+								controlFunc = {this.handleHeightChange}
+								content = {this.state.height}
+								placeholder = {'type your height'}/>
+								<SingleInput
+								inputType = {'number'}
+								title = {'Weight'}
+								name = {'weight'}
+								controlFunc = {this.handleWeightChange}
+								content = {this.state.weight}
+								placeholder = {'type your weight'}/>
+								<Button waves = "light"><input type = "submit" value = "submit" /></Button>
+								<Button waves="light" onClick = {this.props.controlFunc8} >Clear form</Button>
+							</Tab>
+							</Tabs>
 			</form>
-			</div>
 			);
 	}
 }

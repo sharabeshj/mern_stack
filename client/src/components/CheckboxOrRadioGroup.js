@@ -1,5 +1,6 @@
 import React,{ Component } from 'react';
 import PropTypes from 'prop-types';
+import { Row,Input } from 'react-materialize'
 
 export default class CheckboxOrRadioGroup extends Component {
 	constructor(props){
@@ -17,20 +18,21 @@ export default class CheckboxOrRadioGroup extends Component {
 		return (
 			<div>
 				<label>{this.props.title}</label>
-				<div>
+				<Row>
 					{ this.props.options.map(opt => {
 						return (
 						<label key = {opt} >
-							<input
+							<Input
 							name = {this.props.setName}
 							onChange = {this.props.controlFunc}
 							value = {opt}
+							label = {opt}
 							checked = {this.props.selectedOptions.indexOf(opt) > -1 }
-							type = {this.props.type}/>{opt}
+							type = {this.props.type}/>
 						</label>
 						)
 					})}
-				</div>
+				</Row>
 			</div>
 			);
 	}

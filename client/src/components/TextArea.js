@@ -1,5 +1,6 @@
 import React,{ Component } from 'react';
 import PropTypes from 'prop-types'
+import { Row,Input } from 'react-materialize'
 
 export default class TextArea extends Component {
 	constructor(props) {
@@ -15,16 +16,18 @@ export default class TextArea extends Component {
 	};
 	render() {
 		return (
-			<div>
-				<label>{ this.props.title }</label>
-				<textarea 
+			<Row>
+				<Input
+				s= {6}
+				label = {this.props.title}
+				type = 'textarea'
 				style = {this.props.resize ? null : {resize : 'none'}}
 				name = {this.props.name}
 				rows = {this.props.rows}
 				values = {this.props.content}
 				onChange = {this.props.controlFunc}
 				placeholder = {this.props.placeholder}/>
-			</div>
+			</Row>
 			);
 	}
 }

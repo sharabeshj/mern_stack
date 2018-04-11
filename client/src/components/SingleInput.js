@@ -1,5 +1,6 @@
 import React,{ Component } from 'react';
 import PropTypes from 'prop-types';
+import { Row,Input } from 'react-materialize'
 
 export default class SingleInput extends Component {
 	constructor(props){
@@ -17,15 +18,15 @@ export default class SingleInput extends Component {
 	};
 	render() {
 		return (
-			<div>
-				<label>{this.props.title}</label>
-				<input 
+			<Row>
+				<Input s={6}
+				label = {this.props.title}
 				name = {this.props.name}
 				type = {this.props.inputType}
 				value = {this.props.content}
 				onChange = {this.props.controlFunc}
 				placeholder = {this.props.placeholder}/>
-			</div>
+			</Row>
 			);
 	}
 } 
