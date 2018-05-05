@@ -160,8 +160,6 @@ export default class FormContainer extends Component {
 	render(){
 		return(
 			<form onSubmit = { this.handleFormSubmit }>
-			<Tabs className = "tab-demo z-depth-1 ">
-							<Tab title = "Introduction" tabWidth = {6} active>
 								<ImageUpload handleChange = {this.handleChange} state = {this.state.fileName}/>
 								<SingleInput
 								inputType = {'text'}
@@ -177,8 +175,7 @@ export default class FormContainer extends Component {
 								content = {this.state.about}
 								name = {'about'}
 								controlFunc = {this.handleAboutChange}/>
-							</Tab>
-							<Tab title = "Personal Information" tabWidth = {6}>
+
 								<SingleInput
 								inputType = {'text'}
 								title = {'State'}
@@ -229,9 +226,8 @@ export default class FormContainer extends Component {
 								content = {this.state.weight}
 								placeholder = {'type your weight'}/>
 								<Button waves = "light"><input type = "submit" value = "submit" /></Button>
-								<Button waves="light" onClick = {this.props.controlFunc8} >Clear form</Button>
-							</Tab>
-							</Tabs>
+								<Button waves="light" onClick = {this.handleClearForm} >Clear form</Button>
+						
 			</form>
 			);
 	}
